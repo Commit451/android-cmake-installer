@@ -3,6 +3,6 @@ addons:
     packages:
     - libstdc++6
 
-script: "./gradlew build"
+script: "./install-cmake.sh"
 
 sudo: false
