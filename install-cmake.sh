@@ -6,7 +6,7 @@ VERSION=${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_MICRO}
 # can also be darwin or windows
 PLATFORM="linux"
 NAME="cmake-${VERSION}-${PLATFORM}-x86_64"
-PACKAGE_XML_URL="https://dl.dropboxusercontent.com/u/18415572/package.xml"
+PACKAGE_XML_URL="https://github.com/Commit451/android-cmake-installer/releases/download/1.0.0/package.xml"
 wget https://dl.google.com/android/repository/${NAME}.zip
 DIRECTORY=${ANDROID_HOME}/cmake/${VERSION}
 mkdir -p ${DIRECTORY}
