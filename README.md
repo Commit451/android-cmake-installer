@@ -7,7 +7,7 @@ Install CMake with proper configuration for Android projects
 # Usage
 To install the CMake ready for Android development:
 ```bash
-wget https://github.com/Commit451/android-cmake-installer/releases/download/1.0.0/install-cmake.sh
+wget https://github.com/Commit451/android-cmake-installer/releases/download/1.1.0/install-cmake.sh
 chmod +x install-cmake.sh
 ./install-cmake.sh
 ```
