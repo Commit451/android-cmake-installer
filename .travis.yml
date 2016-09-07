@@ -4,13 +4,16 @@ addons:
     - libstdc++6
 
 before_script:
+    # By default, we get an older version of libstdc++6 so we need to update it
+    - sudo apt-get update
+    - sudo apt-get install -y libstdc++6
     # Fake the ANDROID_HOME env var
     - mkdir android
     - ANDROID_HOME=android && export ANDROID_HOME
     - chmod +x install-cmake.sh
 
-script: 
+script:
     - "./install-cmake.sh"
     - "./android/cmake/3.6.3155560/bin/cmake --version"
 
-sudo: false
+sudo: required
