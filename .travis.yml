@@ -1,6 +1,6 @@
 before_script:
     # By default, we get an older version of libstdc++6 so we need to update it
-    - sudo add-apt-repository ppa:ubuntu-toolchain-r/test
+    - sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y
     - sudo apt-get update
     - sudo apt-get install libstdc++6
     # Fake the ANDROID_HOME env var
