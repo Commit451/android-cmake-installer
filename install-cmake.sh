@@ -1,5 +1,6 @@
 #!/bin/sh
 # install CMake for Android builds. Assumes that you have ANDROID_HOME set properly
+# Bash scripts are not my thang, so most of these techniques was taken from stackoverflow
 PACKAGE_XML_URL="https://github.com/Commit451/android-cmake-installer/releases/download/1.0.0/package.xml"
 VERSION_MAJOR="3"
 VERSION_MINOR="6"
@@ -30,16 +31,11 @@ while getopts ":dp:v:" opt; do
       ;;
     v)
       VERSION=$OPTARG
-      #splits the version by the .
-      versionIn=(${VERSION//./ })
-      arrayLength=${#versionIn[@]}
-      if [ "$arrayLength" != 3 ] ; then
-          echo 'Incorrect version. Your version should be formatted like 3.6.1234'
-          exit
-      fi
-      VERSION_MAJOR=${versionIn[0]}
-      VERSION_MINOR=${versionIn[1]}
-      VERSION_MICRO=${versionIn[2]}
+      #splits the version by the . http://stackoverflow.com/a/29903172/895797
+      # evaluate command and assign to var http://stackoverflow.com/a/2559087/895797
+      VERSION_MAJOR=$(echo "$VERSION" | cut -d "." -f 1)
+      VERSION_MINOR=$(echo "$VERSION" | cut -d "." -f 2)
+      VERSION_MICRO=$(echo "$VERSION" | cut -d "." -f 3)
       ;;
     \?)
       echo "Invalid option: -$OPTARG"
@@ -63,7 +59,7 @@ NAME="cmake-${VERSION}-${PLATFORM}-x86_64"
 wget https://dl.google.com/android/repository/${NAME}.zip
 
 if [ ! -f ${NAME}.zip ]; then
-    echo "CMake version not found on server"
+    echo "CMake version not found on server. Make sure your version is formatted like 3.6.1234"
     exit
 fi
 
