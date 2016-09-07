@@ -4,6 +4,9 @@ addons:
     - libstdc++6
 
 before_script:
+    # Fake the ANDROID_HOME env var
+    - mkdir android
+    - ENV ANDROID_HOME android
     - chmod +x install-cmake.sh
 
 script: "./install-cmake.sh"

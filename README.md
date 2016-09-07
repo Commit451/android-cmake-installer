@@ -3,9 +3,16 @@
 Install CMake with proper configuration for Android projects
 
 # Usage
+To install the CMake ready for Android development:
 ```bash
-//TODO
+wget https://github.com/Commit451/android-cmake-installer/releases/download/1.0.0/install-cmake.sh
+chmod +x install-cmake.sh
+./install-cmake.sh
 ```
+This assumes that the `ANDROID_HOME` is set already in your path.
+
+# Example
+This script is currently used in [PixelAdjuster](https://github.com/Commit451/PixelAdjuster) if you want to see a full setup.
 
 License
 --------
