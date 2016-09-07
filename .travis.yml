@@ -6,7 +6,7 @@ addons:
 before_script:
     # Fake the ANDROID_HOME env var
     - mkdir android
-    - ENV ANDROID_HOME android
+    - ANDROID_HOME=android && export ANDROID_HOME
     - chmod +x install-cmake.sh
 
 script: "./install-cmake.sh"
