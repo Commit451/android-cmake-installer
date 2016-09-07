@@ -1,12 +1,52 @@
+#!/bin/sh
 # install CMake for Android builds. Assumes that you have ANDROID_HOME set properly
+PACKAGE_XML_URL="https://github.com/Commit451/android-cmake-installer/releases/download/1.0.0/package.xml"
 VERSION_MAJOR="3"
 VERSION_MINOR="6"
 VERSION_MICRO="3155560"
 VERSION=${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_MICRO}
-# can also be darwin or windows
+# can also be darwin or windows (but not really cause .sh)
 PLATFORM="linux"
+# A POSIX variable
+# Reset in case getopts has been used previously in the shell.
+OPTIND=1
+
+# Initialize our own variables:
+DEBUG=false
+
+# : next to each one that takes variables
+while getopts ":dp:v:" opt; do
+  case $opt in
+    d)
+      DEBUG=true >&2
+      ;;
+    p)
+      PLATFORM=$OPTARG >&2
+      if [[ "$PLATFORM" != "linux" && "$PLATFORM" != "darwin" ]] ; then
+        echo "Invalid platform: $PLATFORM"
+        echo "Options are \"darwin\" (mac) or \"linux\""
+        exit
+      fi
+      ;;
+    v)
+      VERSION=$OPTARG >&2
+      ;;
+    \?)
+      echo "Invalid option: -$OPTARG" >&2
+      ;;
+  esac
+done
+
+shift $((OPTIND-1))
+
+[ "$1" = "--" ] && shift
+if [ "$DEBUG" = true ] ; then
+    echo 'Debug enabled. Prepare for lots of printing'
+    echo "Platform: $PLATFORM"
+    echo "Version: $VERSION"
+fi
+
 NAME="cmake-${VERSION}-${PLATFORM}-x86_64"
-PACKAGE_XML_URL="https://github.com/Commit451/android-cmake-installer/releases/download/1.0.0/package.xml"
 wget https://dl.google.com/android/repository/${NAME}.zip
 DIRECTORY=${ANDROID_HOME}/cmake/${VERSION}
 mkdir -p ${DIRECTORY}
