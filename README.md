@@ -2,6 +2,8 @@
 
 Install CMake with proper configuration for Android projects
 
+[![Build Status](https://travis-ci.org/Commit451/android-cmake-installer.svg?branch=master)](https://travis-ci.org/Commit451/android-cmake-installer)
+
 # Usage
 To install the CMake ready for Android development:
 ```bash
@@ -12,7 +14,7 @@ chmod +x install-cmake.sh
 This assumes that the `ANDROID_HOME` is set already in your path.
 
 # Example
-This script is currently used in [PixelAdjuster](https://github.com/Commit451/PixelAdjuster) if you want to see a full setup.
+This script is currently used in [PixelAdjuster](https://github.com/Commit451/PixelAdjuster) if you want to see a full setup. If you are using travis-ci to build, it ships with an older version of `libstdc++6` which does not work with Android CMake, so take a look at the `.travis-ci.yml` script to see the workaround.
 
 License
 --------
