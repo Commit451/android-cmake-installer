@@ -3,6 +3,9 @@ addons:
     packages:
     - libstdc++6
 
+before_script:
+    - chmod +x install-cmake.sh
+
 script: "./install-cmake.sh"
 
 sudo: false
