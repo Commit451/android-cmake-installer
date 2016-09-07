@@ -13,6 +13,14 @@ chmod +x install-cmake.sh
 ```
 This assumes that the `ANDROID_HOME` is set already in your path.
 
+# Advanced Usage
+If you need more advanced usage, command line arguments are available:
+```bash
+./install-cmake.sh
+    -d # logs a bunch
+    -p [platform] # either darwin (mac) or linux. Default is linux
+    -v [version] # in the format like 3.6.3155560
+```
 # Example
 This script is currently used in [PixelAdjuster](https://github.com/Commit451/PixelAdjuster) if you want to see a full setup. If you are using travis-ci to build, it ships with an older version of `libstdc++6` which does not work with Android CMake, so take a look at the `.travis-ci.yml` script to see the workaround.
 

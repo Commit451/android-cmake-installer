@@ -30,6 +30,15 @@ while getopts ":dp:v:" opt; do
       ;;
     v)
       VERSION=$OPTARG >&2
+      versionIn=(${VERSION//./ })
+      arrayLength=${#versionIn[@]}
+      if [ "$arrayLength" != 3 ] ; then
+          echo 'Incorrect version. Your version should be formatted like 3.6.1234'
+          exit
+      fi
+      VERSION_MAJOR=${versionIn[0]}
+      VERSION_MINOR=${versionIn[1]}
+      VERSION_MICRO=${versionIn[2]}
       ;;
     \?)
       echo "Invalid option: -$OPTARG" >&2
@@ -44,10 +53,19 @@ if [ "$DEBUG" = true ] ; then
     echo 'Debug enabled. Prepare for lots of printing'
     echo "Platform: $PLATFORM"
     echo "Version: $VERSION"
+    echo "Version Major: $VERSION_MAJOR"
+    echo "Version Minor: $VERSION_MINOR"
+    echo "Version Micro: $VERSION_MICRO"
 fi
 
 NAME="cmake-${VERSION}-${PLATFORM}-x86_64"
 wget https://dl.google.com/android/repository/${NAME}.zip
+
+if [ ! -f ${NAME}.zip ]; then
+    echo "CMake version not found on server"
+    exit
+fi
+
 DIRECTORY=${ANDROID_HOME}/cmake/${VERSION}
 mkdir -p ${DIRECTORY}
 unzip ${NAME}.zip -d ${DIRECTORY}
