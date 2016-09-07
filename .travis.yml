@@ -1,0 +1,8 @@
+addons:
+  apt:
+    packages:
+    - libstdc++6
+
+script: "./gradlew build"
+
+sudo: false
