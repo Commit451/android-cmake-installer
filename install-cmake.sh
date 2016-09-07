@@ -18,10 +18,10 @@ DEBUG=false
 while getopts ":dp:v:" opt; do
   case $opt in
     d)
-      DEBUG=true >&2
+      DEBUG=true
       ;;
     p)
-      PLATFORM=$OPTARG >&2
+      PLATFORM=$OPTARG
       if [[ "$PLATFORM" != "linux" && "$PLATFORM" != "darwin" ]] ; then
         echo "Invalid platform: $PLATFORM"
         echo "Options are \"darwin\" (mac) or \"linux\""
@@ -29,7 +29,8 @@ while getopts ":dp:v:" opt; do
       fi
       ;;
     v)
-      VERSION=$OPTARG >&2
+      VERSION=$OPTARG
+      #splits the version by the .
       versionIn=(${VERSION//./ })
       arrayLength=${#versionIn[@]}
       if [ "$arrayLength" != 3 ] ; then
@@ -41,7 +42,7 @@ while getopts ":dp:v:" opt; do
       VERSION_MICRO=${versionIn[2]}
       ;;
     \?)
-      echo "Invalid option: -$OPTARG" >&2
+      echo "Invalid option: -$OPTARG"
       ;;
   esac
 done
