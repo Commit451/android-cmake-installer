@@ -9,6 +9,8 @@ before_script:
     - ANDROID_HOME=android && export ANDROID_HOME
     - chmod +x install-cmake.sh
 
-script: "./install-cmake.sh"
+script: 
+    - "./install-cmake.sh"
+    - "./android/cmake/3.6.3155560/bin/cmake --version"
 
 sudo: false
