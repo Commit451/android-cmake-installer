@@ -10,7 +10,7 @@ before_script:
     - chmod +x install-cmake.sh
 
 script:
-    - "./install-cmake.sh"
+    - "./install-cmake.sh -d -v 3.6.3155560 -p linux"
     - "./android/cmake/3.6.3155560/bin/cmake --version"
 
 sudo: required
