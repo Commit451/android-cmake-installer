@@ -24,6 +24,9 @@ If you need more advanced usage, command line arguments are available:
 # Example
 This script is currently used in [PixelAdjuster](https://github.com/Commit451/PixelAdjuster) if you want to see a full setup. If you are using travis-ci to build, it ships with an older version of `libstdc++6` which does not work with Android CMake, so take a look at the `.travis-ci.yml` script to see the workaround.
 
+# Official Support
+Hopefully Google will support installing CMake via command line in a more official way at some point. Start or follow [this issue](https://code.google.com/p/android/issues/detail?id=221907) if you want to show support for making this happen.
+
 License
 --------
 
