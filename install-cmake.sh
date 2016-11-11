@@ -1,6 +1,6 @@
 #!/bin/sh
 # install CMake for Android builds. Assumes that you have ANDROID_HOME set properly
-# Bash scripts are not my thang, so most of these techniques was taken from stackoverflow
+# Bash scripts are not my thang, so most of these techniques were taken from stackoverflow
 PACKAGE_XML_URL="https://github.com/Commit451/android-cmake-installer/releases/download/1.0.0/package.xml"
 VERSION_MAJOR="3"
 VERSION_MINOR="6"
@@ -15,7 +15,7 @@ OPTIND=1
 # Initialize our own variables:
 DEBUG=false
 
-# : next to each one that takes variables
+# : next to each one that takes variables. It is weird
 while getopts ":dp:v:" opt; do
   case $opt in
     d)
@@ -31,7 +31,7 @@ while getopts ":dp:v:" opt; do
       ;;
     v)
       VERSION=$OPTARG
-      #splits the version by the . http://stackoverflow.com/a/29903172/895797
+      # splits the version by the . http://stackoverflow.com/a/29903172/895797
       # evaluate command and assign to var http://stackoverflow.com/a/2559087/895797
       VERSION_MAJOR=$(echo "$VERSION" | cut -d "." -f 1)
       VERSION_MINOR=$(echo "$VERSION" | cut -d "." -f 2)
@@ -55,6 +55,8 @@ if [ "$DEBUG" = true ] ; then
     echo "Version Micro: $VERSION_MICRO"
 fi
 
+# This url is not really documented or acknowledged anywhere, it was found through
+# some trial and error
 NAME="cmake-${VERSION}-${PLATFORM}-x86_64"
 wget https://dl.google.com/android/repository/${NAME}.zip
 
@@ -68,7 +70,8 @@ mkdir -p ${DIRECTORY}
 unzip ${NAME}.zip -d ${DIRECTORY}
 rm ${NAME}.zip
 # Now, in order to trick gradle into believing that we have installed
-# through the official means, we need to include a package.xml file
+# through the official means, we need to include a package.xml file with
+# the proper values in place
 wget ${PACKAGE_XML_URL}
 sed -i -- 's/CMAKE_VERSION_COMPLETE/'"$VERSION"'/g' package.xml
 sed -i -- 's/CMAKE_VERSION_MAJOR/'"$VERSION_MAJOR"'/g' package.xml

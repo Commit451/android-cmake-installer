@@ -31,7 +31,7 @@ Failed to find CMake.
   Install from Android Studio under File/Settings/Appearance & Behavior/System Settings/Android SDK/SDK Tools/CMake.
   Expected CMake executable at /usr/local/android-sdk/cmake/bin/cmake.
 ```
-This library installs the Google official CMake binary, and also tricks Gradle into believeing that you installed CMake the official way through the SDK Manager.
+This library installs the Google official CMake binary, and also tricks Gradle into believing that you installed CMake the official way through the SDK Manager.
 
 Hopefully Google will support installing CMake via command line in a more official way at some point. Star or follow [this issue](https://code.google.com/p/android/issues/detail?id=221907) if you want to show support for making this happen.
 
