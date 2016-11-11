@@ -25,6 +25,14 @@ If you need more advanced usage, command line arguments are available:
 This script is currently used in [PixelAdjuster](https://github.com/Commit451/PixelAdjuster) if you want to see a full setup. If you are using travis-ci to build, it ships with an older version of `libstdc++6` which does not work with Android CMake, so take a look at the `.travis-ci.yml` script to see the workaround.
 
 # Official Support
+If you run a CMake build on a CI server, you might see the message like:
+```
+Failed to find CMake.
+  Install from Android Studio under File/Settings/Appearance & Behavior/System Settings/Android SDK/SDK Tools/CMake.
+  Expected CMake executable at /usr/local/android-sdk/cmake/bin/cmake.
+```
+This library installs the Google official CMake binary, and also tricks Gradle into believeing that you installed CMake the official way through the SDK Manager.
+
 Hopefully Google will support installing CMake via command line in a more official way at some point. Star or follow [this issue](https://code.google.com/p/android/issues/detail?id=221907) if you want to show support for making this happen.
 
 License
